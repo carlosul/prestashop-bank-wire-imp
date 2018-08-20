@@ -24,29 +24,39 @@
 *}
 
 {if $status == 'ok'}
-<p>{l s='Your order on %s is complete.' sprintf=$shop_name mod='bankwire'}</p>
-		<br />
-		<p>{l s='Please send us a bank wire with' mod='bankwire'}</p>
-		<p>- {l s='Amount' mod='bankwire'} <span class="price"><strong>{$total_to_pay}</strong></span></p>
+	<p class="alert alert-success">{l s='Your order has been confirmed.' sprintf=$shop_name mod='bankwire'}</p>
+	<div class="box">
+		<p>{l s='Please send us a bank wire for the following amount: ' mod='bankwire'}<span class="price"><strong>{$total_to_pay}</strong></span></p>
+		<br>
+		<p>{l s='Account details:' mod='bankwire'}</p>
 		{if $bankwireOwner}
-		    <p>- {l s='Name of account owner' mod='bankwire'}  <strong>{$bankwireOwner}</strong></p>
+		    <p>- {l s='Account owner:' mod='bankwire'}  <strong>{$bankwireOwner}</strong></p>
 		{/if}
 		{if $bankwireDetails}
-		    <p>- {l s='Include these details' mod='bankwire'}  <strong>{$bankwireDetails}</strong></p>
+		    <p>- <strong>{$bankwireDetails}</strong></p>
 		{/if}
 		{if $bankwireAddress}
-		    <p>- {l s='Bank name' mod='bankwire'}  <strong>{$bankwireAddress}</strong></p>
+		    <p>- {l s='Bank name:' mod='bankwire'}  <strong>{$bankwireAddress}</strong></p>
 		{/if}
 		{if !isset($reference)}
-			<p>- {l s='Do not forget to insert your order number #%d in the subject of your bank wire.' sprintf=$id_order mod='bankwire'}</p>
+			<p>- {l s='Don\'t forget to insert your order number ' mod='bankwire'}
+			<strong>{l s='#%d' sprintf=$id_order mod='bankwire'}
+			{l s='in the subject of your bank wire.' mod='bankwire'}</p>
 		{else}
-			<p>- {l s='Do not forget to insert your order reference %s in the subject of your bank wire.' sprintf=$reference mod='bankwire'}</p>
-		{/if}		<br />{l s='An email has been sent with this information.' mod='bankwire'}
+			<p>- {l s='Don\'t forget to insert your order reference ' mod='bankwire'}
+			<strong>{l s='%s' sprintf=$reference mod='bankwire'}</strong>
+			{l s=' in the subject of your bank wire.' mod='bankwire'}</p>
+		{/if}
+		<br>
+		<p>{l s='An email has been sent with this information.' mod='bankwire'}</p>
 		<p> <strong>{l s='Your order will be sent as soon as we receive payment.' mod='bankwire'}</strong></p>
-		<p>{l s='If you have questions, comments or concerns, please contact our' mod='bankwire'} <a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='expert customer support team' mod='bankwire'}</a>.</p>
+		<br>
+		<p>{l s='If you have questions, comments or concerns, please contact our' mod='bankwire'} 
+		<a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='customer support team' mod='bankwire'}</a>.
+		</p><br>
 {else}
-	<p class="warning">
-		{l s='We noticed a problem with your order. If you think this is an error, feel free to contact our' mod='bankwire'} 
-		<a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='expert customer support team' mod='bankwire'}</a>.
-	</p>
+	<p class="alert alert-warning">
+		{l s='We noticed a problem with your order. If you think this is an error, feel free to contact our' mod='bankwire'}
+		<a href="{$link->getPageLink('contact', true)|escape:'html':'UTF-8'}">{l s='customer service department.' mod='bankwire'}</a>.
+	</p><br>
 {/if}
