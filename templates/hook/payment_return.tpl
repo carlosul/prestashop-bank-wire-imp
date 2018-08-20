@@ -49,7 +49,7 @@
 		{/if}
 		<br>
 		<p>{l s='An email has been sent with this information.' mod='bankwire'}</p>
-		<p> <strong>{l s='Your order will be sent as soon as we receive payment.' mod='bankwire'}</strong></p>
+		<p> <strong>{l s='Your order will be sent as soon as we receive the payment.' mod='bankwire'}</strong></p>
 		<br>
 		<p>{l s='If you have questions, comments or concerns, please contact our' mod='bankwire'} 
 		<a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='customer support team' mod='bankwire'}</a>.
